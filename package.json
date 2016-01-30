@@ -3,10 +3,24 @@
   "version": "0.0.0",
   "description": "Endocrine System Core",
   "main": "index.js",
-  "directories": { },
-  "scripts": { },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "pretest": "jshint *.js lib/*.js"
+  },
   "author": "Jue <me@jue.yt>",
   "license": "MIT",
-  "dependencies": { },
-  "devDependencies": { }
+  "dependencies": {},
+  "devDependencies": {
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.5"
+  },
+  "jshintConfig": {
+    "esversion": 6,
+    "node": true,
+    "strict": true,
+    "varstmt": true
+  }
 }
