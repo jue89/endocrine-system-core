@@ -1,0 +1,12 @@
+{
+  "name": "es-core",
+  "version": "0.0.0",
+  "description": "Endocrine System Core",
+  "main": "index.js",
+  "directories": { },
+  "scripts": { },
+  "author": "Jue <me@jue.yt>",
+  "license": "MIT",
+  "dependencies": { },
+  "devDependencies": { }
+}
