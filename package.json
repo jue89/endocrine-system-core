@@ -13,6 +13,7 @@
   "author": "Jue <me@jue.yt>",
   "license": "MIT",
   "dependencies": {
+    "json-gate": "^0.8.22",
     "mosca": "^1.0.2"
   },
   "devDependencies": {
