@@ -6,10 +6,26 @@ let assert = require( 'assert' );
 describe( "Class EndocrineSystem", function() {
 
 	let EndocrineSystem;
+	let mqtt;
+	let pki;
 
 	before( ( done ) => {
 
+		let rfs = require( 'fs' ).readFileSync;
+
+		// Dependencies
+		mqtt = require( 'mqtt' );
+		pki = {
+			ca: rfs( './test/pki/ca.crt' ),
+			clientCert: rfs( './test/pki/client.crt' ),
+			clientKey: rfs( './test/pki/client.key' ),
+			clientCertOtherCA: rfs( './test/pki/client_otherca.crt' ),
+			clientKeyOtherCA: rfs( './test/pki/client_otherca.key' )
+		};
+
 		EndocrineSystem = require( '../lib/es.js' );
+
+		done();
 
 	} );
 
