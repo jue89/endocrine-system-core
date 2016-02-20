@@ -1,7 +1,11 @@
 {
   "name": "es-core",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Endocrine System Core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jue89/endocrine-system-core.git"
+  },
   "main": "index.js",
   "directories": {
     "test": "test"
