@@ -1,6 +1,6 @@
 "use strict";
 
-let assert = require( 'assert' );
+const assert = require( 'assert' );
 
 
 describe( "Class EndocrineSystem", function() {
