@@ -1,12 +1,36 @@
 {
   "name": "es-core",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Endocrine System Core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jue89/endocrine-system-core.git"
+  },
   "main": "index.js",
-  "directories": { },
-  "scripts": { },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "pretest": "jshint *.js lib/*.js"
+  },
   "author": "Jue <me@jue.yt>",
   "license": "MIT",
-  "dependencies": { },
-  "devDependencies": { }
+  "dependencies": {
+    "json-gate": "^0.8.22",
+    "mdns": "^2.3.0",
+    "mosca": "^1.0.2",
+    "pem": "^1.8.1"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.5",
+    "mqtt": "^1.7.0"
+  },
+  "jshintConfig": {
+    "esversion": 6,
+    "node": true,
+    "strict": true,
+    "varstmt": true
+  }
 }
