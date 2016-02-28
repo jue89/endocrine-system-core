@@ -37,6 +37,38 @@ describe( "Class EndocrineSystem", function() {
 
 	} );
 
+	it( "should start advertisement on startup and stop advertisement on shutdown", ( done ) => {
+
+		function adv( fingerprint, port ) {
+			try {
+
+				assert.strictEqual( port, 55499 );
+				assert.strictEqual( fingerprint, '60:e5:c4:f9:6d:9d:18:bc:ce:49:12:2c:d1:09:dd:ab:aa:64:c6:9f:df:6b:ff:7c:3e:f4:34:59:18:42:74:89' );
+
+				return done;
+
+			} catch( e ) { done( e ); }
+		}
+
+		let es = new EndocrineSystem( {
+			certPath: './test/pki/server.crt',
+			keyPath: './test/pki/server.key',
+			caPath: './test/pki/ca.crt',
+			port: 55499,
+			mongo: {
+				url: 'mongodb://localhost:27017/es-test-' + Date.now().toString()
+			},
+			advertisements: [ adv ]
+		} );
+
+		es.on( 'ready', () => {
+
+			es.destroy();
+
+		} );
+
+	} );
+
 	it( "should reject connection attemps with client certificates signed by the wrong CA", ( done ) => {
 
 		let es = new EndocrineSystem( {
