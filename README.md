@@ -18,6 +18,7 @@ While running this example you should start several instances of the [Endocrine 
 ``` javascript
 "use strict";
 
+const mdns = require( 'es-discovery-mdns' );
 const ES = require( './lib/es.js' );
 
 let es = new ES( {
@@ -25,7 +26,7 @@ let es = new ES( {
   certPath: 'server.crt',
   caPath: 'ca.crt',
   mongo: { url: 'mongodb://localhost:27017/es' },
-  mDNSadvertise: true,
+  advertisements: [ mdns.advertisement ],
   accessControl: {
     in: ( client, name ) => {
       // The hormone name must match with the CN of the client certificate
@@ -69,14 +70,14 @@ Offers a broker for [Endocrine System Edge](https://github.com/jue89/endocrine-s
  * ```keyPath```: Path to the PEM client key.
  * ```caPath```: Path to the PEM certificate authority that signed the client certificate.
  * ```port```: (optional) Port to listen on. Default: 8883.
- * ```mDNSadvertise```: (optional) Advertise the broker on the local network via mDNS. All edge nodes using the same CA will be able to find this broker. Default: false.
+ * ```advertisements```: (optional) Array of advertisement services. They will make the Core discoverable.
  * ```mongo```: MongoDB configuration:
-  * ```url```: URL to the MongoDB server.
+   * ```url```: URL to the MongoDB server.
  * ```accessControl```: Callback functions for deciding whether or not a message shall pass. If not specified the core will reject by default.
-  * ```in```: Callback method called for every incoming hormone. Interface: ```( cert, hormoneName ) => {}``` expecting a promise.
-  * ```out```: Callback method called for every outgoing hormone. Interface: ```( cert, hormoneName ) => {}``` expecting a promise.
-  * ```inOther```: Callback method called for every MQTT message not related to the endocrine system. Interface: ```( cert, topic ) => {}``` expecting a promise.
-  * ```outOther```: Callback method called for every MQTT message not related to the endocrine system. Interface: ```( cert, topic ) => {}``` expecting a promise.
+   * ```in```: Callback method called for every incoming hormone. Interface: ```( cert, hormoneName ) => {}``` expecting a promise.
+   * ```out```: Callback method called for every outgoing hormone. Interface: ```( cert, hormoneName ) => {}``` expecting a promise.
+   * ```inOther```: Callback method called for every MQTT message not related to the endocrine system. Interface: ```( cert, topic ) => {}``` expecting a promise.
+   * ```outOther```: Callback method called for every MQTT message not related to the endocrine system. Interface: ```( cert, topic ) => {}``` expecting a promise.
 
 
 ### Class: Endocrine System Core
