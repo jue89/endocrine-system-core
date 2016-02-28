@@ -91,7 +91,7 @@ The connection handle ```es``` offers some events and methods:
 es.on( 'ready', () => { ... } );
 ```
 
-Emitted if the server is able to accept incoming connections.
+Emitted when the server is able to accept incoming connections.
 
 
 #### Event: inRejected
@@ -130,10 +130,10 @@ es.on( 'outPassed', ( client, topic ) => { ... } );
 Emitted if an outgoing message passed.
 
 
-#### Method: destroy
+#### Method: shutdown
 
 ``` javascript
-es.destroy();
+es.shutdown();
 ```
 
 Shuts down the endorcine system. A promise is returned, that will be resolved if the system has been successfully shut down.

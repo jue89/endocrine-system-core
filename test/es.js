@@ -63,7 +63,7 @@ describe( "Class EndocrineSystem", function() {
 
 		es.on( 'ready', () => {
 
-			es.destroy();
+			es.shutdown();
 
 		} );
 
@@ -91,7 +91,7 @@ describe( "Class EndocrineSystem", function() {
 
 			client.once( 'error', () => {
 				client.end( () => {
-					es.destroy().then( () => done() );
+					es.shutdown().then( () => done() );
 				} );
 			} );
 
@@ -126,7 +126,7 @@ describe( "Class EndocrineSystem", function() {
 
 			client.once( 'close', () => {
 				client.end( () => {
-					es.destroy().then( () => done() );
+					es.shutdown().then( () => done() );
 				} );
 			} );
 
@@ -169,7 +169,7 @@ describe( "Class EndocrineSystem", function() {
 
 			client.once( 'close', () => {
 				client.end( () => {
-					es.destroy().then( () => done() );
+					es.shutdown().then( () => done() );
 				} );
 			} );
 
@@ -212,7 +212,7 @@ describe( "Class EndocrineSystem", function() {
 
 			client.once( 'close', () => {
 				client.end( () => {
-					es.destroy().then( () => done() );
+					es.shutdown().then( () => done() );
 				} );
 			} );
 
@@ -261,7 +261,7 @@ describe( "Class EndocrineSystem", function() {
 
 				// After 200ms we can be sure that everything is okay
 				setTimeout( () => client.end( () => {
-					es.destroy().then( () => done() );
+					es.shutdown().then( () => done() );
 				} ), 200 );
 			} );
 
@@ -311,7 +311,7 @@ describe( "Class EndocrineSystem", function() {
 
 				// After 200ms we can be sure that everything is okay
 				setTimeout( () => client.end( () => {
-					es.destroy().then( () => done() );
+					es.shutdown().then( () => done() );
 				} ), 200 );
 			} );
 
@@ -361,7 +361,7 @@ describe( "Class EndocrineSystem", function() {
 			} );
 
 			client.once( 'message', () => client.end( () => {
-				es.destroy().then( () => done() );
+				es.shutdown().then( () => done() );
 			} ) );
 
 		} );
@@ -408,7 +408,7 @@ describe( "Class EndocrineSystem", function() {
 			} );
 
 			client.once( 'message', () => client.end( () => {
-				es.destroy().then( () => done() );
+				es.shutdown().then( () => done() );
 			} ) );
 
 		} );
@@ -470,7 +470,7 @@ describe( "Class EndocrineSystem", function() {
 
 						// After 200ms we can be sure that everything is okay
 						setTimeout( () => client.end( () => {
-							es.destroy().then( () => done() );
+							es.shutdown().then( () => done() );
 						} ), 200 );
 
 					} );
@@ -532,7 +532,7 @@ describe( "Class EndocrineSystem", function() {
 					client.once( 'connect', () => {
 
 						client.once( 'message', () => client.end( () => {
-							es.destroy().then( () => done() );
+							es.shutdown().then( () => done() );
 						} ) );
 
 						client.subscribe( '#' );
@@ -589,7 +589,7 @@ describe( "Class EndocrineSystem", function() {
 				// Close connection and reconnect
 				client.end( () => {
 
-					es.destroy();
+					es.shutdown();
 
 					es = new EndocrineSystem( {
 						certPath: './test/pki/server.crt',
@@ -626,7 +626,7 @@ describe( "Class EndocrineSystem", function() {
 						client.once( 'connect', () => {
 
 							client.once( 'message', () => client.end( () => {
-								es.destroy().then( () => done() );
+								es.shutdown().then( () => done() );
 							} ) );
 
 							client.subscribe( '#' );
