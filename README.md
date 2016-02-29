@@ -26,7 +26,7 @@ let es = new ES( {
   certPath: 'server.crt',
   caPath: 'ca.crt',
   mongo: { url: 'mongodb://localhost:27017/es' },
-  advertisements: [ mdns.advertisement ],
+  advertisements: [ mdns.advertisement() ],
   accessControl: {
     in: ( client, name ) => {
       // The hormone name must match with the CN of the client certificate
