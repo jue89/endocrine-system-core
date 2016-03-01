@@ -1,6 +1,6 @@
 {
   "name": "es-core",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Endocrine System Core",
   "repository": {
     "type": "git",
@@ -18,7 +18,6 @@
   "license": "MIT",
   "dependencies": {
     "json-gate": "^0.8.22",
-    "mdns": "^2.3.0",
     "mosca": "^1.0.2",
     "pem": "^1.8.1"
   },
