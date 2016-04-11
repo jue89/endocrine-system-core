@@ -73,6 +73,7 @@ Offers a broker for [Endocrine System Edge](https://github.com/jue89/endocrine-s
  * ```advertisements```: (optional) Array of advertisement services. They will make the Core discoverable.
  * ```mongo```: MongoDB configuration:
    * ```url```: URL to the MongoDB server.
+ * ```stats```: Number of seconds between two stats events. If zero, statistic collection is disabled. Default: 0
  * ```accessControl```: Callback functions for deciding whether or not a message shall pass. If not specified the core will reject by default.
    * ```in```: Callback method called for every incoming hormone. Interface: ```( cert, hormoneName ) => {}``` expecting a promise.
    * ```out```: Callback method called for every outgoing hormone. Interface: ```( cert, hormoneName ) => {}``` expecting a promise.
@@ -88,46 +89,91 @@ The connection handle ```es``` offers some events and methods:
 #### Event: ready
 
 ``` javascript
-es.on( 'ready', () => { ... } );
+es.on( 'ready', ( env ) => { ... } );
 ```
 
 Emitted when the server is able to accept incoming connections.
+
+```env``` has the following fields:
+ * ```port```: The port the server listens on
+ * ```keyPath```: Path to private key
+ * ```certPath```: Path to server certificate
+ * ```caPath```: Path to CA certificate
 
 
 #### Event: inRejected
 
 ``` javascript
-es.on( 'inRejected', ( client, topic ) => { ... } );
+es.on( 'inRejected', ( env ) => { ... } );
 ```
 
 Emitted if an incoming message is rejected.
+
+```env``` has the following fields:
+ * ```clientID```: The MQTT client ID
+ * ```clientIP```: Remote IP address
+ * ```clientPort```: Remote TCP port
+ * ```origin```: Client certificate information
 
 
 #### Event: outRejected
 
 ``` javascript
-es.on( 'outRejected', ( client, topic ) => { ... } );
+es.on( 'outRejected', ( env ) => { ... } );
 ```
 
 Emitted if an outgoing message is rejected.
+
+```env``` has the following fields:
+ * ```clientID```: The MQTT client ID
+ * ```clientIP```: Remote IP address
+ * ```clientPort```: Remote TCP port
+ * ```origin```: Client certificate information
 
 
 #### Event: inPassed
 
 ``` javascript
-es.on( 'inPassed', ( client, topic ) => { ... } );
+es.on( 'inPassed', ( env ) => { ... } );
 ```
 
 Emitted if an incoming message passed.
+
+```env``` has the following fields:
+ * ```clientID```: The MQTT client ID
+ * ```clientIP```: Remote IP address
+ * ```clientPort```: Remote TCP port
+ * ```origin```: Client certificate information
 
 
 #### Event: outPassed
 
 ``` javascript
-es.on( 'outPassed', ( client, topic ) => { ... } );
+es.on( 'outPassed', ( env ) => { ... } );
 ```
 
 Emitted if an outgoing message passed.
+
+```env``` has the following fields:
+ * ```clientID```: The MQTT client ID
+ * ```clientIP```: Remote IP address
+ * ```clientPort```: Remote TCP port
+ * ```origin```: Client certificate information
+
+
+#### Event: stats
+
+``` javascript
+es.on( 'outPassed', ( env ) => { ... } );
+```
+
+Emitted after every stats interval.
+
+```env``` has the following fields:
+ * ```bytesIn```: Inbound bytes since last stats event
+ * ```bytesOut```: Outbound bytes since last stats event
+ * ```messagesIn```: Inbound messages count since last stats event
+ * ```messagesOut```: Outbound messages count since last stats event
 
 
 #### Method: shutdown
