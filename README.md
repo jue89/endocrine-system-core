@@ -1,4 +1,4 @@
-# Endocrine System: Edge
+# Endocrine System: Core
 
 This is the Endocrine System Core that connects several [Endocrine System Edges](https://github.com/jue89/endocrine-system-edge) with each other. For a better understanding also check out the Readme of the Egde.
 
@@ -41,10 +41,9 @@ let es = new ES( {
   }
 } );
 
-es.on( 'inRejected', ( client, topic ) => {
+es.on( 'inRejected', ( env ) => {
   // Notify that we just rejected someone's published message
-  let ip = client.connection.stream.remoteAddress;
-  console.error( "Publish rejected from " + ip + " on topic " + topic );
+  console.error( "Publish rejected from " + env.clientIP + " on topic " + env.pkgTopic );
 } );
 ```
 
@@ -114,6 +113,8 @@ Emitted if an incoming message is rejected.
  * ```clientIP```: Remote IP address
  * ```clientPort```: Remote TCP port
  * ```origin```: Client certificate information
+ * ```pkgTopic```: MQTT package topic
+ * ```pkgLength```: MQTT package length
 
 
 #### Event: outRejected
@@ -129,6 +130,8 @@ Emitted if an outgoing message is rejected.
  * ```clientIP```: Remote IP address
  * ```clientPort```: Remote TCP port
  * ```origin```: Client certificate information
+ * ```pkgTopic```: MQTT package topic
+ * ```pkgLength```: MQTT package length
 
 
 #### Event: inPassed
@@ -144,6 +147,8 @@ Emitted if an incoming message passed.
  * ```clientIP```: Remote IP address
  * ```clientPort```: Remote TCP port
  * ```origin```: Client certificate information
+ * ```pkgTopic```: MQTT package topic
+ * ```pkgLength```: MQTT package length
 
 
 #### Event: outPassed
@@ -159,6 +164,8 @@ Emitted if an outgoing message passed.
  * ```clientIP```: Remote IP address
  * ```clientPort```: Remote TCP port
  * ```origin```: Client certificate information
+ * ```pkgTopic```: MQTT package topic
+ * ```pkgLength```: MQTT package length
 
 
 #### Event: stats
