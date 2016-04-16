@@ -19,9 +19,9 @@ While running this example you should start several instances of the [Endocrine 
 "use strict";
 
 const mdns = require( 'es-discovery-mdns' );
-const ES = require( './lib/es.js' );
+const ES = require( 'es-core' );
 
-let es = new ES( {
+let es = ES( {
   keyPath: 'server.key',
   certPath: 'server.crt',
   caPath: 'ca.crt',
