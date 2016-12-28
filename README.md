@@ -171,12 +171,14 @@ Emitted if an outgoing message passed.
 #### Event: stats
 
 ``` javascript
-es.on( 'outPassed', ( env ) => { ... } );
+es.on( 'stats', ( env ) => { ... } );
 ```
 
 Emitted after every stats interval.
 
 ```env``` has the following fields:
+ * ```start```: Start time of the current metering
+ * ```end```: End time of the current metering
  * ```bytesIn```: Inbound bytes since last stats event
  * ```bytesOut```: Outbound bytes since last stats event
  * ```messagesIn```: Inbound messages count since last stats event
